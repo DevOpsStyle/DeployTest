@@ -1,0 +1,14 @@
+---
+- name: Deploy New Azure Resource Group Playbook
+  host: localhost
+  gather_facts: False
+  tasks:
+
+    - name: Creating Resource Group
+      azure_rm_resourcegroup:
+        name: AnsibleIaaS
+        location: westeurope
+      tags:
+        testing: testing
+        delete: never
+    
