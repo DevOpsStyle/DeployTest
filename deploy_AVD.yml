@@ -4,12 +4,12 @@
   gather_facts: False
   tasks:
 
-    - name: Creating Resource Group
-      azure_rm_resourcegroup:
-        name: AnsibleIaaS
-        location: westeurope
-      tags:
-        testing: testing
-        delete: never
+  - name: Creating Resource Group
+    azure_rm_resourcegroup:
+      name: AnsibleIaaS
+      location: westeurope
+    tags:
+      testing: testing
+      delete: never
 #TESTING
     
