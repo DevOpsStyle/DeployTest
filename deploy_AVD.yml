@@ -1,6 +1,6 @@
 ---
 - name: Deploy New Azure Resource Group Playbook
-  host: localhost
+  hosts: localhost
   gather_facts: False
   tasks:
 
