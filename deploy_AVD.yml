@@ -6,12 +6,6 @@
 
   - name: Creating Resource Group
     azure_rm_resourcegroup:
-      name: AnsibleIaaS
+      name: AzureAVDAnsible
       location: westeurope
-    vars:
-      client_id: "{{ client_id }}"
-      secret: "{{ secret }}"
-      subscription_id: "{{ subscription_id }}"
-      tenant: "{{ tenant }}"
-#TESTING
     
