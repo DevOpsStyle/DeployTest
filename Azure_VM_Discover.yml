@@ -1,0 +1,9 @@
+---
+- name: Create Azure VM
+  hosts: localhost
+  connection: local
+  tasks:
+
+  - name: List available publishers
+    azure_rm_virtualmachineimage_info:
+      location: westeurope 
