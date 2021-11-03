@@ -32,28 +32,17 @@
       public_ip_name: "{{ vm_name }}"
       security_group: "{{ vm_name }}"  
   - name: Create HostPool
-    shell: |
-        az desktopvirtualization hostpool create --name "AnsibleHP" \
-        --resource-group "{{ resource_group }}" \ 
-        --location "{{ location }}" \
-        --host-pool-type "Pooled" \
-        --load-balancer-type "BreadthFirst" \
-        --max-session-limit 10 \
-        --personal-desktop-assignment-type "Automatic"  \
-        --registration-info expiration-time="2022-03-22T14:01:54.9571247Z" registration-token-operation="Update" \
-        --sso-context "KeyVaultPath" \
-        --description "Automated Host Pool Creation" \
-        --friendly-name "AnsibleHP" \
+    shell: az desktopvirtualization hostpool create --name "MyHostPool" --resource-group "VirtualDesktop" --location "westeurope" --host-pool-type "Pooled" --load-balancer-type "BreadthFirst" --max-session-limit 10 --personal-desktop-assignment-type "Automatic"  --registration-info expiration-time="2022-03-22T14:01:54.9571247Z" registration-token-operation="Update" --sso-context "KeyVaultPath" --description "Description of this host pool" --friendly-name "Friendly name of this host pool"
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}"
       vm_size: Standard B2s
-      admin_username: azureuser
-      admin_password: Password@123
+      admin_username: Sergio
+      admin_password: Sergiotest123@
       network_interfaces: "{{ vm_name }}"
       image:
-        offer: Windows 10 Enterprise multi-session, Version 1909
-        publisher: microsoftwindowsdesktop
-        sku: 16.04-LTS
+        offer: Windows-10
+        publisher: MicrosoftWindowsDesktop
+        sku: 19h2-evd-g2
         version: latest
