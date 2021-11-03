@@ -8,6 +8,29 @@
     location: westeurope
   tasks:
 
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      address_prefixes: "10.0.6.0/24"
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      address_prefix: "10.0.6.0/24"
+      virtual_network: "{{ vm_name }}"
+  - name: Create virtual network inteface card
+    azure_rm_networkinterface:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      virtual_network: "{{ vm_name }}"
+      subnet: "{{ vm_name }}"
+      public_ip_name: "{{ vm_name }}"
+      security_group: "{{ vm_name }}"
   - name: Create HostPool
     azure_rm_deployment:
       resource_group: "{{ resource_group }}"
@@ -69,9 +92,9 @@
         aadJoin:
           value: "false"
         administratorAccountUsername:
-          value: "tommaso@tommasosacco.it"
+          value: "empty"
         administratorAccountPassword:
-          value: "CasertaRoma1991"
+          value: "empty"
         domain:
           value: ""
         ouPath:
@@ -79,7 +102,7 @@
         vmAdministratorAccountUsername:
           value: "tommaso"
         vmAdministratorAccountPassword:
-          value: "CasertaRoma1991"
+          value: "empty"
         addToWorkspace:
           value: "true"
         applicationGroupTags:
