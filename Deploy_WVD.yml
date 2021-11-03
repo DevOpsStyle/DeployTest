@@ -32,7 +32,25 @@
       public_ip_name: "{{ vm_name }}"
       security_group: "{{ vm_name }}"  
   - name: Create HostPool
-    shell: az desktopvirtualization hostpool create --name "MyHostPool" --resource-group "VirtualDesktop" --location "westeurope" --host-pool-type "Pooled" --load-balancer-type "BreadthFirst" --max-session-limit 10 --personal-desktop-assignment-type "Automatic"  --registration-info expiration-time="2022-03-22T14:01:54.9571247Z" registration-token-operation="Update" --sso-context "KeyVaultPath" --description "Description of this host pool" --friendly-name "Friendly name of this host pool"
+    azure_rm_deployment:
+      resource_group: "{{ resource_group }}"
+      name: myDeployment
+      template_link: 'https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/CreateAndProvisionHostPool/CreateHostpoolTemplate.json'
+      parameters:
+        hostpoolName:
+          value: "AnsibleHP"
+        hostpoolFriendlyName:
+          value: "AnsibleHP"
+        location: 
+          value: "westeurope"
+        hostpoolType:
+          value: "Pooled"
+        maxSessionLimit:
+          value: "10"
+        WorkaddTospace:
+          value: "false"
+        TokenExirationTime:
+          value: "2022-03-22T14:01:54.9571247Z"
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
