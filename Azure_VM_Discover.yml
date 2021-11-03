@@ -1,5 +1,5 @@
 ---
-- name: Create Azure VM
+- name: Get VM Offer Information
   hosts: localhost
   connection: local
   tasks:
