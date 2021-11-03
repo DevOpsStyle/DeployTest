@@ -7,138 +7,139 @@
     vm_name: WVD
     location: westeurope
   tasks:
-- name: Create a resource group
-  azure_rm_resourcegroup:
-    name: "{{ resource_group }}"
-    location: "{{ location }}"
-- name: Create virtual network
-  azure_rm_virtualnetwork:
-    resource_group: "{{ resource_group }}"
-    name: "{{ vm_name }}"
-    address_prefixes: "10.0.0.0/16"
-- name: Add subnet
-  azure_rm_subnet:
-    resource_group: "{{ resource_group }}"
-    name: "{{ vm_name }}"
-    address_prefix: "10.0.1.0/24"
-    virtual_network: "{{ vm_name }}"
-- name: Create virtual network inteface card
-  azure_rm_networkinterface:
-    resource_group: "{{ resource_group }}"
-    name: "{{ vm_name }}"
-    virtual_network: "{{ vm_name }}"
-    subnet: "{{ vm_name }}"
-    public_ip_name: "{{ vm_name }}"
-    security_group: "{{ vm_name }}"
-- name: Create HostPool
-  azure_rm_deployment:
-    resource_group: "{{ resource_group }}"
-    name: myDeployment
-    template_link: 'https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/CreateAndProvisionHostPool/CreateHostpoolTemplate.json'
-    parameters:
-      intune:
-        value: "false"
-      hostpoolName:
-        value: "AnsibleHP"
-      hostpoolDescription:
-        value: "CreatedthroughtheAzureVirtualDesktopextension"
-      location:
-        value: "{{ location }}" 
-      validationEnvironment:
-        value: "false"
-      hostpoolType:
-        value: "Pooled"
-      loadBalancerType:
-        value: "BreadthFirst"
-      vmResourceGroup:
-        value: "{{ resource_group }}"
-      vmNamePrefix:
-        value: "AnsibleVM"
-      vmLocation:
-        value: "{{ location }}"
-      availabilityOption:
-        value: "None"
-      availabilitySetName:
-        value: ""
-      createAvailabilitySet:
-        value: "false"
-      availabilitySetUpdateDomainCount:
-        value: "5"
-      availabilitySetFaultDomainCount:
-        value: "2"
-      availabilityZone:
-        value: "1"
-      vmImageType:
-        value: "Gallery"
-      vmSize:
-        value: "Standard_D2s_v3"
-      vmNumberOfInstances:
-        value: "2"
-      vmDiskType:
-        value: "StandardSSD_LRS"
-      vmUseManagedDisks:
-        value: "true"
-      bootDiagnostics:
-        value: "enabled:false"
-      virtualNetworkResourceGroupName:
-        value: "{{ resource_group }}"
-      existingVnetName:
-        value: "{{ vm_name }}"
-      existingSubnetName:
-        value: "default"
-      createNetworkSecurityGroup:
-        value: "false"
-      aadJoin:
-        value: "false"
-      administratorAccountUsername:
-        value: "tommaso@tommasosacco.it"
-      administratorAccountPassword:
-        value: "CasertaRoma1991"
-      domain:
-        value: ""
-      ouPath:
-        value: ""
-      vmAdministratorAccountUsername:
-        value: "tommaso"
-      vmAdministratorAccountPassword:
-        value: "CasertaRoma1991"
-      addToWorkspace:
-        value: "true"
-      applicationGroupTags:
-        value: ""
-      availabilitySetTags:
-        value: ""
-      hostpoolTags:
-        value: ""
-      imageTags:
-        value: ""
-      networkInterfaceTags:
-        value: ""
-      networkSecurityGroupTags:
-        value: ""
-      virtualMachineTags:
-        value: ""
-      apiVersion:
-        value: "2019-12-10-preview"
-      deploymentId:
-        value: "2a443871-117c-4f2a-8685-d5d7f9a04074"
-      vmGalleryImageOffer:
-        value: "Windows-10"
-      vmGalleryImagePublisher:
-        value: "MicrosoftWindowsDesktop"
-      vmGalleryImageSKU:
-        value: "19h2-evd-g2"
-      vmGalleryImageHasPlan:
-        value: "false"
-      maxSessionLimit:
-        value: "10"
-      workspaceResourceGroup:
-        value: "{{ resource_group }}"
-      workspaceName:
-        value: "AnsibleWSP"
-      workspaceLocation:
-        value: "{{ location }}"
-      allApplicationGroupReferences:
-        value: ""
-      isNewWorkspace:
-        value: "true"
+
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      address_prefixes: "10.0.0.0/16"
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      address_prefix: "10.0.1.0/24"
+      virtual_network: "{{ vm_name }}"
+  - name: Create virtual network inteface card
+    azure_rm_networkinterface:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      virtual_network: "{{ vm_name }}"
+      subnet: "{{ vm_name }}"
+      public_ip_name: "{{ vm_name }}"
+      security_group: "{{ vm_name }}"
+  - name: Create HostPool
+    azure_rm_deployment:
+      resource_group: "{{ resource_group }}"
+      name: myDeployment
+      template_link: 'https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/CreateAndProvisionHostPool/CreateHostpoolTemplate.json'
+      parameters:
+        intune:
+          value: "false"
+        hostpoolName:
+          value: "AnsibleHP"
+        hostpoolDescription:
+          value: "CreatedthroughtheAzureVirtualDesktopextension"
+        location:
+          value: "{{ location }}" 
+        validationEnvironment:
+          value: "false"
+        hostpoolType:
+          value: "Pooled"
+        loadBalancerType:
+          value: "BreadthFirst"
+        vmResourceGroup:
+          value: "{{ resource_group }}"
+        vmNamePrefix:
+          value: "AnsibleVM"
+        vmLocation:
+          value: "{{ location }}"
+        availabilityOption:
+          value: "None"
+        availabilitySetName:
+          value: ""
+        createAvailabilitySet:
+          value: "false"
+        availabilitySetUpdateDomainCount:
+          value: "5"
+        availabilitySetFaultDomainCount:
+          value: "2"
+        availabilityZone:
+          value: "1"
+        vmImageType:
+          value: "Gallery"
+        vmSize:
+          value: "Standard_D2s_v3"
+        vmNumberOfInstances:
+          value: "2"
+        vmDiskType:
+          value: "StandardSSD_LRS"
+        vmUseManagedDisks:
+          value: "true"
+        bootDiagnostics:
+          value: "enabled:false"
+        virtualNetworkResourceGroupName:
+          value: "{{ resource_group }}"
+        existingVnetName:
+          value: "{{ vm_name }}"
+        existingSubnetName:
+          value: "default"
+        createNetworkSecurityGroup:
+          value: "false"
+        aadJoin:
+          value: "false"
+        administratorAccountUsername:
+          value: "tommaso@tommasosacco.it"
+        administratorAccountPassword:
+          value: "CasertaRoma1991"
+        domain:
+          value: ""
+        ouPath:
+          value: ""
+        vmAdministratorAccountUsername:
+          value: "tommaso"
+        vmAdministratorAccountPassword:
+          value: "CasertaRoma1991"
+        addToWorkspace:
+          value: "true"
+        applicationGroupTags:
+          value: ""
+        availabilitySetTags:
+          value: ""
+        hostpoolTags:
+          value: ""
+        imageTags:
+          value: ""
+        networkInterfaceTags:
+          value: ""
+        networkSecurityGroupTags:
+          value: ""
+        virtualMachineTags:
+          value: ""
+        apiVersion:
+          value: "2019-12-10-preview"
+        deploymentId:
+          value: "2a443871-117c-4f2a-8685-d5d7f9a04074"
+        vmGalleryImageOffer:
+          value: "Windows-10"
+        vmGalleryImagePublisher:
+          value: "MicrosoftWindowsDesktop"
+        vmGalleryImageSKU:
+          value: "19h2-evd-g2"
+        vmGalleryImageHasPlan:
+          value: "false"
+        maxSessionLimit:
+          value: "10"
+        workspaceResourceGroup:
+          value: "{{ resource_group }}"
+        workspaceName:
+          value: "AnsibleWSP"
+        workspaceLocation:
+          value: "{{ location }}"
+        allApplicationGroupReferences:
+          value: ""
+        isNewWorkspace:
+          value: "true"
