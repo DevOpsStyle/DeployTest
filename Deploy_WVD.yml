@@ -3,8 +3,6 @@
   hosts: localhost
   connection: local
   vars:
-    user: 'tommasosacco.1991@outlook.it'
-    passwd: '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'
     regex_token: '(?<=token=).+?(?=[\W])'
   tasks:
 
