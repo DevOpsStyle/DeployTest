@@ -32,111 +32,13 @@
       resource_group: "{{ resource_group }}"
       name: myDeployment
       template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
+      parameters_link: ''
       parameters:
-        intune:
-          value: false
-        hostpoolName:
-          value: "AnsibleHP"
-        hostpoolDescription:
-          value: "CreatedthroughtheAzureVirtualDesktopextension"
-        location:
-          value: "{{ location }}" 
-        validationEnvironment:
-          value: false
-        hostpoolType:
-          value: "Pooled"
-        loadBalancerType:
-          value: "BreadthFirst"
-        vmResourceGroup:
-          value: "{{ resource_group }}"
-        vmNamePrefix:
-          value: "AnsibleVM"
-        vmLocation:
-          value: "{{ location }}"
-        availabilityOption:
-          value: "None"
-        availabilitySetName:
-          value: ""
-        createAvailabilitySet:
-          value: false
-        availabilitySetUpdateDomainCount:
-          value: "5"
-        availabilitySetFaultDomainCount:
-          value: "2"
-        availabilityZone:
-          value: "1"
-        vmImageType:
-          value: "Gallery"
-        vmSize:
-          value: "Standard_D2s_v3"
-        vmNumberOfInstances:
-          value: "2"
-        vmDiskType:
-          value: "StandardSSD_LRS"
-        vmUseManagedDisks:
-          value: true
-        bootDiagnostics:
-          value: 
-            enabled: false
-        virtualNetworkResourceGroupName:
-          value: "{{ resource_group }}"
-        existingVnetName:
-          value: "{{ vm_name }}"
-        existingSubnetName:
-          value: "default"
-        createNetworkSecurityGroup:
-          value: false
-        aadJoin:
-          value: false
         administratorAccountUsername:
           value: "{{ vmAdministratorAccountUsername }}"
         administratorAccountPassword:
           value: "{{ vmAdministratorAccountPassword }}"
-        domain:
-          value: ""
-        ouPath:
-          value: ""
         vmAdministratorAccountUsername:
           value: "{{ vmAdministratorAccountUsername }}"
         vmAdministratorAccountPassword:
           value: "{{ vmAdministratorAccountPassword }}"
-        addToWorkspace:
-          value: true
-        applicationGroupTags:
-          value: ""
-        availabilitySetTags:
-          value: ""
-        hostpoolTags:
-          value: ""
-        imageTags:
-          value: ""
-        networkInterfaceTags:
-          value: ""
-        networkSecurityGroupTags:
-          value: ""
-        virtualMachineTags:
-          value: ""
-        apiVersion:
-          value: "2019-12-10-preview"
-        deploymentId:
-          value: "2a443871-117c-4f2a-8685-d5d7f9a04074"
-        vmGalleryImageOffer:
-          value: "Windows-10"
-        vmGalleryImagePublisher:
-          value: "MicrosoftWindowsDesktop"
-        vmGalleryImageSKU:
-          value: "19h2-evd-g2"
-        vmGalleryImageHasPlan:
-          value: false
-        maxSessionLimit:
-          value: 10
-        workspaceResourceGroup:
-          value: "{{ resource_group }}"
-        workspaceName:
-          value: "AnsibleWSP"
-        workspaceLocation:
-          value: "{{ location }}"
-        allApplicationGroupReferences:
-          value: ""
-        isNewWorkspace:
-          value: true
