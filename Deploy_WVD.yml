@@ -32,7 +32,7 @@
       resource_group: "{{ resource_group }}"
       name: myDeployment
       template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
-      parameters_link: ''
+      parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
       parameters:
         administratorAccountUsername:
           value: "{{ vmAdministratorAccountUsername }}"
