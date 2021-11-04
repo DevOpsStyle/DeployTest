@@ -27,7 +27,7 @@
       resource_group: "{{ resource_group }}"
       location: "{{ location }}"
       name: myDeployment
-      template_link: 'https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/CreateAndProvisionHostPool/CreateHostpoolTemplate.json'
+      template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
       parameters:
         intune:
           value: "false"
