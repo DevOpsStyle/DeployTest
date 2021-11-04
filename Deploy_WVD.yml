@@ -43,9 +43,7 @@
     register: response
   - name: Debug Token Template
     debug:
-      msg: "{{ response.stdout | regex_search(item) }}"
-      with_items:
-      - (' (?<=\").+?(?=\\) ')
+      msg: "{{ response.stdout | regex_search('(?<=\").+?(?=\\)') }}"
   - name: Create HostPool
     azure_rm_deployment:
       resource_group: "{{ resource_group }}"
