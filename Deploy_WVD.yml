@@ -4,7 +4,7 @@
   connection: local
   vars:
     user: 'tommasosacco.1991@outlook.it'
-    pass: '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'
+    passwd: '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'
   tasks:
 
   - name: Create a resource group
@@ -31,4 +31,4 @@
       parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
       become: true
       ansible_become_user: "{{ user }}"
-      ansible_become_pass: "{{ pass }}"
+      ansible_become_pass: "{{ passwd }}"
