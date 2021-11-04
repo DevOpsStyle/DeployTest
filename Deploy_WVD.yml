@@ -76,7 +76,7 @@
       parameters_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json?token={{ response_parameters.stdout | regex_search(regex_token) }}"
     failed_when: false
   - name: Stamp information after deployment 
-    azure_rm_resourcegroup_info:
+    azure_rm_resourcegroup_facts:
       name: "{{ resource_group }}"
   - name: Finish
     debug:
