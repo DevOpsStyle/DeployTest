@@ -5,7 +5,7 @@
   vars:
     user: 'tommasosacco.1991@outlook.it'
     passwd: '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'
-    regex: "'(?<=\").+?(?=\\\)'"
+    regex: "'(?<=\").+?(?='\\')'"
   tasks:
 
   - name: Create a resource group
@@ -44,7 +44,10 @@
     register: response
   - name: Debug Token Template
     debug:
-      msg: "{{ response.stdout | regex_search(regex) }}"
+      msg: "{{ item }}"
+    with_items:
+      - "{{ regex_search(item) }}"
+      - "{{ response.stdout | regex_search(regex) }}"
   - name: Create HostPool
     azure_rm_deployment:
       resource_group: "{{ resource_group }}"
