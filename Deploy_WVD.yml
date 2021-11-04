@@ -80,7 +80,7 @@
     register: resource_info
   - name: Print Resource deployed state
     debug:
-      msg: "Name: {{ item-name }} - Resource Type: {{ item.type }}"
+      msg: "Name: {{ item.name }} - Resource Type: {{ item.type }}"
     with_items:
       - "{{ resource_info.resourcegroups.0.resources }}"
   - name: Finish
