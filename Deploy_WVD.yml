@@ -2,6 +2,9 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
+  vars:
+    user: 'tommasosacco.1991@outlook.it'
+    pass: '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'
   tasks:
 
   - name: Create a resource group
@@ -24,8 +27,8 @@
       resource_group: "{{ resource_group }}"
       location: "{{ location }}"
       name: myDeployment
-      template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
+      template_link: 'https://{{ user }}:{{ pass }}raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
       parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
-    become: true
-    become_user: 'tommasosacco.1991@outlook.it'
-    become_password: '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'
+      become: true
+      ansible_become_user: "{{ user }}"
+      ansible_become_pass: "{{ pass }}"
