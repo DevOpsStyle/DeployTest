@@ -72,5 +72,5 @@
       resource_group: "{{ resource_group }}"
       location: "{{ location }}"
       name: myDeployment
-      template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json?token=AWHEOVHU726JPZFZP2OMVTTBQPLXA'
-      parameters_link: 'https://074fee220b09d52c5b4b495d808c308044c33cc1@raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
+      template_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json?token={{ response_token.stdout | regex_search(regex_token) }}"
+      parameters_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json?token={{ response_parameters.stdout | regex_search(regex_token) }}"
