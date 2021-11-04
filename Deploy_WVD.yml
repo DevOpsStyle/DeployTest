@@ -46,8 +46,7 @@
     debug:
       msg: "{{ item }}"
     with_items:
-      - "{{ regex_search(item) }}"
-      - "{{ response.stdout | regex_search(regex) }}"
+      - "{{ regex }}"
   - name: Create HostPool
     azure_rm_deployment:
       resource_group: "{{ resource_group }}"
