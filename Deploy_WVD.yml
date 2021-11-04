@@ -19,18 +19,13 @@
       name: "{{ vm_name }}"
       address_prefix: "{{ address_prefix }}"
       virtual_network: "{{ vm_name }}"
-  - name: Create virtual network inteface card
-    azure_rm_networkinterface:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}"
-      virtual_network: "{{ vm_name }}"
-      subnet: "{{ vm_name }}"
-      public_ip_name: "{{ vm_name }}"
-      security_group: "{{ vm_name }}"
   - name: Create HostPool
     azure_rm_deployment:
       resource_group: "{{ resource_group }}"
       location: "{{ location }}"
       name: myDeployment
-      template_link: template.json
-      parameters_link: parameters.json
+      template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
+      parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
+    become: true
+    become_user: 'tommasosacco.1991@outlook.it'
+    become_password: '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'
