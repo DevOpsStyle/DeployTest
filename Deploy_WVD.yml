@@ -27,7 +27,7 @@
       resource_group: "{{ resource_group }}"
       location: "{{ location }}"
       name: myDeployment
-      template_link: 'https://{{ user }}:{{ pass }}raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
+      template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
       parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
       become: true
       ansible_become_user: "{{ user }}"
