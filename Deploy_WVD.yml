@@ -82,7 +82,7 @@
     debug:
       msg: "{{ item }}"
     loop:
-      - "{{ resource_info.resourcegroup.resources }}"
+      - "{{ resource_info.resourcegroups.resources }}"
   - name: Finish
     debug:
       msg: "DEPLOYMENT COMPLETED"
