@@ -2,10 +2,6 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
-  vars:
-    resource_group: "AzureAnsibleAVD"
-    vm_name: WVD
-    location: westeurope
   tasks:
 
   - name: Create a resource group
@@ -16,12 +12,12 @@
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}"
-      address_prefixes: "10.0.0.0/16"
+      address_prefixes: "{{ address_prefixes }}"
   - name: Add subnet
     azure_rm_subnet:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}"
-      address_prefix: "10.0.1.0/24"
+      address_prefix: "{{ address_prefix }}"
       virtual_network: "{{ vm_name }}"
   - name: Create virtual network inteface card
     azure_rm_networkinterface:
@@ -38,7 +34,7 @@
       template_link: 'https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/CreateAndProvisionHostPool/CreateHostpoolTemplate.json'
       parameters:
         intune:
-          value: "false"
+          value: false
         hostpoolName:
           value: "AnsibleHP"
         hostpoolDescription:
@@ -46,7 +42,7 @@
         location:
           value: "{{ location }}" 
         validationEnvironment:
-          value: "false"
+          value: false
         hostpoolType:
           value: "Pooled"
         loadBalancerType:
@@ -62,7 +58,7 @@
         availabilitySetName:
           value: ""
         createAvailabilitySet:
-          value: "false"
+          value: false
         availabilitySetUpdateDomainCount:
           value: "5"
         availabilitySetFaultDomainCount:
@@ -78,9 +74,10 @@
         vmDiskType:
           value: "StandardSSD_LRS"
         vmUseManagedDisks:
-          value: "true"
+          value: true
         bootDiagnostics:
-          value: "enabled:false"
+          value: 
+            enabled: false
         virtualNetworkResourceGroupName:
           value: "{{ resource_group }}"
         existingVnetName:
@@ -88,23 +85,23 @@
         existingSubnetName:
           value: "default"
         createNetworkSecurityGroup:
-          value: "false"
+          value: false
         aadJoin:
-          value: "false"
+          value: false
         administratorAccountUsername:
-          value: "empty"
+          value: "{{ vmAdministratorAccountUsername }}"
         administratorAccountPassword:
-          value: "empty"
+          value: "{{ vmAdministratorAccountPassword }}"
         domain:
           value: ""
         ouPath:
           value: ""
         vmAdministratorAccountUsername:
-          value: "tommaso"
+          value: "{{ vmAdministratorAccountUsername }}"
         vmAdministratorAccountPassword:
-          value: "empty"
+          value: "{{ vmAdministratorAccountPassword }}"
         addToWorkspace:
-          value: "true"
+          value: true
         applicationGroupTags:
           value: ""
         availabilitySetTags:
@@ -130,9 +127,9 @@
         vmGalleryImageSKU:
           value: "19h2-evd-g2"
         vmGalleryImageHasPlan:
-          value: "false"
+          value: false
         maxSessionLimit:
-          value: "10"
+          value: 10
         workspaceResourceGroup:
           value: "{{ resource_group }}"
         workspaceName:
@@ -142,4 +139,4 @@
         allApplicationGroupReferences:
           value: ""
         isNewWorkspace:
-          value: "true"
+          value: true
