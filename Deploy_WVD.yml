@@ -7,7 +7,7 @@
   - name: Create a resource group
     azure_rm_resourcegroup:
       name: "{{ resource_group }}"
-      location: "westus"
+      location: "{{ location }}"
   - name: Create virtual network
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
@@ -33,12 +33,4 @@
       name: myDeployment
       template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
       parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
-     #parameters:
-     #  administratorAccountUsername:
-     #    value: "{{ vmAdministratorAccountUsername }}"
-     #  administratorAccountPassword:
-     #    value: "{{ vmAdministratorAccountPassword }}"
-     #  vmAdministratorAccountUsername:
-     #    value: "{{ vmAdministratorAccountUsername }}"
-     #  vmAdministratorAccountPassword:
-     #    value: "{{ vmAdministratorAccountPassword }}"
+
