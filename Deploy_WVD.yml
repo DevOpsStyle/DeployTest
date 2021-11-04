@@ -76,6 +76,7 @@
       name: myDeployment
       template_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json?token={{ response_token.stdout | regex_search(regex_token) }}"
       parameters_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json?token={{ response_parameters.stdout | regex_search(regex_token) }}"
+    failed_when: false
   - name: Stamp information after deployment 
     azure_rm_resourcegroup_info:
       name: "{{ resource_group }}"
