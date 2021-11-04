@@ -80,7 +80,9 @@
     register: resource_info
   - name: Print Resource deployed state
     debug:
-      msg: "{{ resource_info }}"
+      msg: "{{ item }}"
+    loop:
+      - "{{ resource_info.resourcegroup.resources }}"
   - name: Finish
     debug:
       msg: "DEPLOYMENT COMPLETED"
