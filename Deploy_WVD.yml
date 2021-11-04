@@ -33,12 +33,12 @@
       name: myDeployment
       template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json'
       parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json'
-      parameters:
-        administratorAccountUsername:
-          value: "{{ vmAdministratorAccountUsername }}"
-        administratorAccountPassword:
-          value: "{{ vmAdministratorAccountPassword }}"
-        vmAdministratorAccountUsername:
-          value: "{{ vmAdministratorAccountUsername }}"
-        vmAdministratorAccountPassword:
-          value: "{{ vmAdministratorAccountPassword }}"
+     #parameters:
+     #  administratorAccountUsername:
+     #    value: "{{ vmAdministratorAccountUsername }}"
+     #  administratorAccountPassword:
+     #    value: "{{ vmAdministratorAccountPassword }}"
+     #  vmAdministratorAccountUsername:
+     #    value: "{{ vmAdministratorAccountUsername }}"
+     #  vmAdministratorAccountPassword:
+     #    value: "{{ vmAdministratorAccountPassword }}"
