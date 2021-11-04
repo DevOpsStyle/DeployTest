@@ -22,7 +22,7 @@
       name: "{{ vm_name }}"
       address_prefix: "{{ address_prefix }}"
       virtual_network: "{{ vm_name }}"
-  - name: Get Token
+  - name: Get Token Template
     shell: |
       curl 'https://github.com/DevOpsStyle/DeployTest/raw/main/template.json' \
       -H 'authority: github.com' \
@@ -41,6 +41,9 @@
       -H 'cookie: _octo=GH1.1.1836989600.1631284845; _device_id=8a72352163b6e81b42f4b277c03e00a3; user_session=L2M1ekrDIf3GVd4A-N7CYrw3Zl7DX62v_167FjfS8lo-ufva; __Host-user_session_same_site=L2M1ekrDIf3GVd4A-N7CYrw3Zl7DX62v_167FjfS8lo-ufva; logged_in=yes; dotcom_user=DevOpsStyle; has_recent_activity=1; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; tz=Europe%2FRome; _gh_sess=BDoVYdStQnhyD%2BtLYTaAHU2Pgsmnv71pSYgA%2F2WnWPOXLEGCFNk9ss%2BwD%2FUJPtsxrwt4Za6jq3MV%2BKDU%2BvbyefdKEpcxDhz6lH2%2BYKFVQTmwEMpewAbxCE4OgxDN%2FwsWYHUk9A2gsuYSDFznl%2FllHHmc6YjLUHlleLPJNVKcZ%2Bol%2FmKMMiKM2CWXHsrEanqn56EddfPSEgg%2BlMa0mFdv1vqReWC1YC%2Bh%2FiM1FggyJo1g0AmT%2BkkuOVhmZmtQcjKEbW0mo%2BdcYkbRQe%2FuFlwrXpj%2Bt8aveJK5DzKioz1X4M98X7mck9r7EKugvJAAoAIYKw%2Fw9Nm7iM%2BSwi54OOM%2BUdbinjisUbhoayiODb9I0PKkAZDUWM2q0Do%2Fw5gJWwCYCfVUOSiCZaz6JUmVsj8gEToX7rgWXpD1xws6m%2FHFik26qEc8HXIDioUAnwbsYU1jUy9o6EJIFVjPLrlv%2Bxr7B2juBq%2FFAedpoHh1PSbeQPORiaWSEDwwSkDwadQ%3D--ZQc%2BsjzMZE9newAl--O5CndsnNE7UBsAJfdtKPiw%3D%3D' \
       --compressed
     register: response
+  - name: Debug Token Template
+    debug:
+      msg: "{{ response.stdout }}"
   - name: Create HostPool
     azure_rm_deployment:
       resource_group: "{{ resource_group }}"
