@@ -75,9 +75,14 @@
       template_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json?token={{ response_token.stdout | regex_search(regex_token) }}"
       parameters_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json?token={{ response_parameters.stdout | regex_search(regex_token) }}"
     failed_when: false
-  - name: Stamp information after deployment 
-    azure_rm_resourcegroup_facts:
+  - name: Save information after deployment 
+    azure_rm_resourcegroup_info:
       name: "{{ resource_group }}"
+      list_resources: yes
+    register: resource_info
+  - name: Print Resource deployed state
+    debug:
+      msg: "{{ resource_info }}"
   - name: Finish
     debug:
       msg: "DEPLOYMENT COMPLETED"
