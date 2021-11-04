@@ -5,7 +5,7 @@
   vars:
     user: 'tommasosacco.1991@outlook.it'
     passwd: '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'
-    regex: '(?<=\").+?(?=\\)'
+    regex: (?<=\").+?(?=\\)
   tasks:
 
   - name: Create a resource group
