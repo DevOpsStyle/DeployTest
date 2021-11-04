@@ -32,5 +32,5 @@
       resource_group: "{{ resource_group }}"
       location: "{{ location }}"
       name: myDeployment
-      template_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template.json?token=AWHEOVDBNWYNG3AXYANUNT3BQO3J4'
-      parameters_link: 'https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters.json?token=AWHEOVDBJTIHW3D2KVU7UBLBQO3MY'
+      template_link: template.json
+      parameters_link: parameters.json
