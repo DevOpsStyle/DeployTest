@@ -69,7 +69,7 @@
             "value": "Standard_D2s_v3"
         },
         "vmNumberOfInstances": {
-            "value": 10
+            "value": 2
         },
         "vmDiskType": {
             "value": "StandardSSD_LRS"
