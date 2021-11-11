@@ -9,7 +9,7 @@
             "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.10.2/"
         },
         "tokenExpirationTime": {
-            "value": "2021-11-05T09:07:11.106Z"
+            "value": "2021-11-15T09:07:11.106Z"
         },
         "vmTemplate": {
             "value": "{\"domain\":\"tommasosacco.it\",\"galleryImageOffer\":\"office-365\",\"galleryImagePublisher\":\"MicrosoftWindowsDesktop\",\"galleryImageSKU\":\"20h2-evd-o365pp-g2\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"WVD\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":\"microsoftwindowsdesktop.office-36520h2-evd-o365pp-g2\"}"
