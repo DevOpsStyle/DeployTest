@@ -51,7 +51,7 @@
       admin_username: "{{ adminuser }}"
       admin_password: "{{ adminpass }}"
       network_interfaces: "{{ vm_name }}"
-      os_type: WIndows
+      os_type: Windows
       managed_disk_type: StandardSSD_LRS
       image:
         offer: WindowsServer
