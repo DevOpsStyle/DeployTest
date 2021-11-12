@@ -6,6 +6,6 @@
 
   - name: Creating Resource Group
     azure_rm_resourcegroup:
-      name: AzureAVDAnsible
-      location: westeurope
+      name: "{{ resourcegroupname }}"
+      location: "{{ resourcegrouplocation }}" 
     
