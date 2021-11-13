@@ -9,10 +9,10 @@
             "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.10.2/"
         },
         "tokenExpirationTime": {
-            "value": "2021-11-15T09:07:11.106Z"
+            "value": "2021-11-14T10:52:51.701Z"
         },
         "vmTemplate": {
-            "value": "{\"domain\":\"tommasosacco.it\",\"galleryImageOffer\":\"office-365\",\"galleryImagePublisher\":\"MicrosoftWindowsDesktop\",\"galleryImageSKU\":\"20h2-evd-o365pp-g2\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"WVD\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":\"microsoftwindowsdesktop.office-36520h2-evd-o365pp-g2\"}"
+            "value": "{\"domain\":\"tsforest.it\",\"galleryImageOffer\":\"office-365\",\"galleryImagePublisher\":\"MicrosoftWindowsDesktop\",\"galleryImageSKU\":\"20h1-evd-o365pp-g2\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"WVD\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_B2s\",\"cores\":2,\"ram\":4},\"galleryItemId\":\"microsoftwindowsdesktop.office-36520h1-evd-o365pp-g2\"}"
         },
         "intune": {
             "value": false
@@ -36,7 +36,7 @@
             "value": "BreadthFirst"
         },
         "vmResourceGroup": {
-            "value": "AzureAnsibleAVD"
+            "value": "AVD_Test"
         },
         "vmNamePrefix": {
             "value": "WVD"
@@ -66,7 +66,7 @@
             "value": "Gallery"
         },
         "vmSize": {
-            "value": "Standard_D2s_v3"
+            "value": "Standard_B2s"
         },
         "vmNumberOfInstances": {
             "value": 2
@@ -79,41 +79,38 @@
         },
         "bootDiagnostics": {
             "value": {
-                "enabled": false
+                "enabled": true
             }
         },
         "virtualNetworkResourceGroupName": {
-            "value": "AzureAnsibleAVD"
+            "value": "My_RG"
         },
         "existingVnetName": {
-            "value": "WVD"
+            "value": "VNet_My_RG"
         },
         "existingSubnetName": {
-            "value": "WVD"
+            "value": "default"
         },
         "createNetworkSecurityGroup": {
-            "value": false
+            "value": true
         },
         "aadJoin": {
             "value": false
         },
         "administratorAccountUsername": {
-            "value": "tommaso@tommasosacco.it"
+            "value": "domainadmin@tsforest.it"
         },
         "administratorAccountPassword": {
-            "value": "CasertaRoma1991"
+            "value": null
         },
         "domain": {
-            "value": ""
-        },
-        "ouPath": {
-            "value": ""
+            "value": "tsforest.it"
         },
         "vmAdministratorAccountUsername": {
             "value": "tommaso"
         },
         "vmAdministratorAccountPassword": {
-            "value": "CasertaRoma1991"
+            "value": null
         },
         "addToWorkspace": {
             "value": true
@@ -143,7 +140,7 @@
             "value": "2019-12-10-preview"
         },
         "deploymentId": {
-            "value": "266b997c-18a1-476f-87eb-87773b82602e"
+            "value": "0433b011-66fe-44cb-a165-6964e4c94084"
         },
         "vmGalleryImageOffer": {
             "value": "office-365"
@@ -152,16 +149,33 @@
             "value": "MicrosoftWindowsDesktop"
         },
         "vmGalleryImageSKU": {
-            "value": "20h2-evd-o365pp-g2"
+            "value": "20h1-evd-o365pp-g2"
         },
         "vmGalleryImageHasPlan": {
             "value": false
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "RDP",
+                    "properties": {
+                        "access": "Allow",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "3389",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "protocol": "Tcp",
+                        "priority": 300,
+                        "direction": "Inbound"
+                    }
+                }
+            ]
         },
         "maxSessionLimit": {
             "value": 10
         },
         "workspaceResourceGroup": {
-            "value": "AzureAnsibleAVD"
+            "value": "AVD_Test"
         },
         "workspaceName": {
             "value": "WVD"
