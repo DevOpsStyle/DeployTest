@@ -1,5 +1,5 @@
 ---
-- name: Create Azure VM
+- name: Create Azure Virtual Desktop Infrastructure
   hosts: localhost
   connection: local
   vars:
@@ -74,4 +74,4 @@
       - "{{ resource_info.resourcegroups.0.resources }}"
   - name: Finish
     debug:
-      msg: "DEPLOYMENT COMPLETED"
+      msg: "INFRASTRUCTURE DEPLOYMENT COMPLETED"
