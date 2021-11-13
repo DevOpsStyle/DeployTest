@@ -35,9 +35,6 @@
         "loadBalancerType": {
             "value": "BreadthFirst"
         },
-        "vmResourceGroup": {
-            "value": "AVD_Test"
-        },
         "vmNamePrefix": {
             "value": "WVD"
         },
