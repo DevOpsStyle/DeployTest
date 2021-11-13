@@ -101,7 +101,7 @@
             "value": "domainadmin@tsforest.it"
         },
         "administratorAccountPassword": {
-            "value": null
+            "value": "CasertaRoma1991"
         },
         "domain": {
             "value": "tsforest.it"
@@ -110,7 +110,7 @@
             "value": "tommaso"
         },
         "vmAdministratorAccountPassword": {
-            "value": null
+            "value": "CasertaRoma1991"
         },
         "addToWorkspace": {
             "value": true
