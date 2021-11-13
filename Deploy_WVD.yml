@@ -10,17 +10,6 @@
     azure_rm_resourcegroup:
       name: "{{ resource_group }}"
       location: "{{ location }}"
-# - name: Create virtual network
-#   azure_rm_virtualnetwork:
-#     resource_group: "{{ resource_group }}"
-#     name: "{{ vm_vnet_name }}"
-#     address_prefixes: "{{ address_prefixes }}"
-# - name: Add subnet
-#   azure_rm_subnet:
-#     resource_group: "{{ resource_group }}"
-#     name: "{{ vm_vnet_name }}"
-#     address_prefix: "{{ address_prefix }}"
-#     virtual_network: "{{ vm_vnet_name }}"
   - name: Generating Token Template
     shell: |
       curl 'https://github.com/DevOpsStyle/DeployTest/raw/main/template.json' \
