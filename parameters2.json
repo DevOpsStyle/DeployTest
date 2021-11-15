@@ -1,0 +1,190 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "artifactsLocation": {
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_9-30-2021.zip"
+        },
+        "nestedTemplatesLocation": {
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.10.2/"
+        },
+        "tokenExpirationTime": {
+            "value": "2021-11-20T10:52:51.701Z"
+        },
+        "vmTemplate": {
+            "value": "{\"domain\":\"tsforest.it\",\"galleryImageOffer\":\"office-365\",\"galleryImagePublisher\":\"MicrosoftWindowsDesktop\",\"galleryImageSKU\":\"20h1-evd-o365pp-g2\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"WVD\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_B2s\",\"cores\":2,\"ram\":4},\"galleryItemId\":\"microsoftwindowsdesktop.office-36520h1-evd-o365pp-g2\"}"
+        },
+        "intune": {
+            "value": false
+        },
+        "hostpoolName": {
+            "value": "FXLogix"
+        },
+        "hostpoolDescription": {
+            "value": "Created through the Azure Virtual Desktop extension"
+        },
+        "location": {
+            "value": "westeurope"
+        },
+        "validationEnvironment": {
+            "value": false
+        },
+        "hostpoolType": {
+            "value": "Pooled"
+        },
+        "loadBalancerType": {
+            "value": "BreadthFirst"
+        },
+        "vmNamePrefix": {
+            "value": "FX"
+        },
+        "vmLocation": {
+            "value": "westeurope"
+        },
+        "availabilityOption": {
+            "value": "None"
+        },
+        "availabilitySetName": {
+            "value": ""
+        },
+        "createAvailabilitySet": {
+            "value": false
+        },
+        "availabilitySetUpdateDomainCount": {
+            "value": 5
+        },
+        "availabilitySetFaultDomainCount": {
+            "value": 2
+        },
+        "availabilityZone": {
+            "value": 1
+        },
+        "vmImageType": {
+            "value": "Gallery"
+        },
+        "vmSize": {
+            "value": "Standard_B2s"
+        },
+        "vmNumberOfInstances": {
+            "value": 2
+        },
+        "vmDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "vmUseManagedDisks": {
+            "value": true
+        },
+        "bootDiagnostics": {
+            "value": {
+                "enabled": true
+            }
+        },
+        "virtualNetworkResourceGroupName": {
+            "value": "RGforFSLogix"
+        },
+        "existingVnetName": {
+            "value": "VNetFSLogix"
+        },
+        "existingSubnetName": {
+            "value": "default"
+        },
+        "createNetworkSecurityGroup": {
+            "value": true
+        },
+        "aadJoin": {
+            "value": false
+        },
+        "administratorAccountUsername": {
+            "value": "domainadmin@tsfxlogixtest.it"
+        },
+        "administratorAccountPassword": {
+            "value": "CasertaRoma1991"
+        },
+        "domain": {
+            "value": "tsfxlogixtest.it"
+        },
+        "vmAdministratorAccountUsername": {
+            "value": "tommaso"
+        },
+        "vmAdministratorAccountPassword": {
+            "value": "CasertaRoma1991"
+        },
+        "addToWorkspace": {
+            "value": true
+        },
+        "applicationGroupTags": {
+            "value": {}
+        },
+        "availabilitySetTags": {
+            "value": {}
+        },
+        "hostpoolTags": {
+            "value": {}
+        },
+        "imageTags": {
+            "value": {}
+        },
+        "networkInterfaceTags": {
+            "value": {}
+        },
+        "networkSecurityGroupTags": {
+            "value": {}
+        },
+        "virtualMachineTags": {
+            "value": {}
+        },
+        "apiVersion": {
+            "value": "2019-12-10-preview"
+        },
+        "deploymentId": {
+            "value": "0433b011-66fe-44cb-a165-6964e4c94084"
+        },
+        "vmGalleryImageOffer": {
+            "value": "office-365"
+        },
+        "vmGalleryImagePublisher": {
+            "value": "MicrosoftWindowsDesktop"
+        },
+        "vmGalleryImageSKU": {
+            "value": "20h1-evd-o365pp-g2"
+        },
+        "vmGalleryImageHasPlan": {
+            "value": false
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "RDP",
+                    "properties": {
+                        "access": "Allow",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "3389",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "protocol": "Tcp",
+                        "priority": 300,
+                        "direction": "Inbound"
+                    }
+                }
+            ]
+        },
+        "maxSessionLimit": {
+            "value": 10
+        },
+        "workspaceResourceGroup": {
+            "value": "FX_Test"
+        },
+        "workspaceName": {
+            "value": "FX"
+        },
+        "workspaceLocation": {
+            "value": "westeurope"
+        },
+        "allApplicationGroupReferences": {
+            "value": ""
+        },
+        "isNewWorkspace": {
+            "value": true
+        }
+    }
+}

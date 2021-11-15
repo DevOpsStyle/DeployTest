@@ -1,0 +1,77 @@
+---
+- name: Create Azure Virtual Desktop Infrastructure for FSLogix
+  hosts: localhost
+  connection: local
+  vars:
+    regex_token: '(?<=token=).+?(?=[\W])'
+  tasks:
+
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
+  - name: Generating Token Template
+    shell: |
+      curl 'https://github.com/DevOpsStyle/DeployTest/raw/main/template.json' \
+      -H 'authority: github.com' \
+      -H 'sec-ch-ua: "Microsoft Edge";v="95", "Chromium";v="95", ";Not A Brand";v="99"' \
+      -H 'sec-ch-ua-mobile: ?0' \
+      -H 'sec-ch-ua-platform: "Windows"' \
+      -H 'upgrade-insecure-requests: 1' \
+      -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40' \
+      -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+      -H 'sec-fetch-site: same-origin' \
+      -H 'sec-fetch-mode: navigate' \
+      -H 'sec-fetch-user: ?1' \
+      -H 'sec-fetch-dest: document' \
+      -H 'referer: https://github.com/DevOpsStyle/DeployTest/blob/main/template.json' \
+      -H 'accept-language: it,it-IT;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' \
+      -H 'cookie: _octo=GH1.1.1836989600.1631284845; _device_id=8a72352163b6e81b42f4b277c03e00a3; user_session=L2M1ekrDIf3GVd4A-N7CYrw3Zl7DX62v_167FjfS8lo-ufva; __Host-user_session_same_site=L2M1ekrDIf3GVd4A-N7CYrw3Zl7DX62v_167FjfS8lo-ufva; logged_in=yes; dotcom_user=DevOpsStyle; has_recent_activity=1; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; tz=Europe%2FRome; _gh_sess=BDoVYdStQnhyD%2BtLYTaAHU2Pgsmnv71pSYgA%2F2WnWPOXLEGCFNk9ss%2BwD%2FUJPtsxrwt4Za6jq3MV%2BKDU%2BvbyefdKEpcxDhz6lH2%2BYKFVQTmwEMpewAbxCE4OgxDN%2FwsWYHUk9A2gsuYSDFznl%2FllHHmc6YjLUHlleLPJNVKcZ%2Bol%2FmKMMiKM2CWXHsrEanqn56EddfPSEgg%2BlMa0mFdv1vqReWC1YC%2Bh%2FiM1FggyJo1g0AmT%2BkkuOVhmZmtQcjKEbW0mo%2BdcYkbRQe%2FuFlwrXpj%2Bt8aveJK5DzKioz1X4M98X7mck9r7EKugvJAAoAIYKw%2Fw9Nm7iM%2BSwi54OOM%2BUdbinjisUbhoayiODb9I0PKkAZDUWM2q0Do%2Fw5gJWwCYCfVUOSiCZaz6JUmVsj8gEToX7rgWXpD1xws6m%2FHFik26qEc8HXIDioUAnwbsYU1jUy9o6EJIFVjPLrlv%2Bxr7B2juBq%2FFAedpoHh1PSbeQPORiaWSEDwwSkDwadQ%3D--ZQc%2BsjzMZE9newAl--O5CndsnNE7UBsAJfdtKPiw%3D%3D' \
+      --compressed
+    register: response_token
+  - name: Generating Token Parameters
+    shell: |
+      curl 'https://github.com/DevOpsStyle/DeployTest/raw/main/parameters.json' \
+      -H 'authority: github.com' \
+      -H 'sec-ch-ua: "Microsoft Edge";v="95", "Chromium";v="95", ";Not A Brand";v="99"' \
+      -H 'sec-ch-ua-mobile: ?0' \
+      -H 'sec-ch-ua-platform: "Windows"' \
+      -H 'upgrade-insecure-requests: 1' \
+      -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40' \
+      -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+      -H 'sec-fetch-site: same-origin' \
+      -H 'sec-fetch-mode: navigate' \
+      -H 'sec-fetch-user: ?1' \
+      -H 'sec-fetch-dest: document' \
+      -H 'referer: https://github.com/DevOpsStyle/DeployTest/blob/main/parameters.json' \
+      -H 'accept-language: it,it-IT;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' \
+      -H 'cookie: _octo=GH1.1.1836989600.1631284845; _device_id=8a72352163b6e81b42f4b277c03e00a3; user_session=L2M1ekrDIf3GVd4A-N7CYrw3Zl7DX62v_167FjfS8lo-ufva; __Host-user_session_same_site=L2M1ekrDIf3GVd4A-N7CYrw3Zl7DX62v_167FjfS8lo-ufva; logged_in=yes; dotcom_user=DevOpsStyle; has_recent_activity=1; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; tz=Europe%2FRome; _gh_sess=tbFyVEacAdzltsnH0%2FcKOc66kVUFpdQ4QL8mD9jp5OY4XwDMnTEw3PBeTFjy81%2BBLTYQ1JoAUBTIjD2gDIApFKhHoATedd4FRAmQrYe59kXLML%2B9ueB%2F1PKjLoTpjFp3faBl9nrEvYXjzg9xfqmPpgMYycu3QFpYV2zXkJbHVcdf6sdEqWOKZqU%2F7c%2Fn3OxzQTF8oKRE6X%2Ba6w%2B87ZiGCpIlxIiLC2UOqLCNNMTyx%2BdBLjIIkXM8v7Rz%2Bz8jP3cr81s1%2BaBd3iEXZGUzhqEcWDPkasIcrSHNgOvyjN7KaVkSa2thYB1CstjJnW0WpuqDWFtxmyGkoZ%2FB8xwzDtu5yB8DiU5RSc89PwF4feErUY7X4vwHV0XfgfYioI8n7scrW508WGbEnxsyLBDInZXUqD%2BZFG8VQ6ruvvChGAH4usQf5hIVIcaxwxkpenYeUYM9tBVrx2MGPROb%2BYzkkQXrF0vu2ihSG8pGOMRa6a9fD79yY8d60Hr%2BQPYJ%2FI4%3D--Hh9SLuiaKZGmNRLd--xS2k2BQhXdc2RIEPye6CeA%3D%3D' \
+      --compressed
+    register: response_parameters
+  - name: Debug Token Template
+    debug:
+      msg: "{{ item }}"
+    with_items:
+    - "Secure Token for template.json: {{ response_token.stdout | regex_search(regex_token) }}"
+    - "Secure Token for parameters.json: {{ response_parameters.stdout | regex_search(regex_token) }}"
+  - name: Create HostPool
+    azure_rm_deployment:
+      resource_group: "{{ resource_group }}"
+      location: "{{ location }}"
+      name: myDeployment
+      template_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/template2.json?token={{ response_token.stdout | regex_search(regex_token) }}"
+      parameters_link: "https://raw.githubusercontent.com/DevOpsStyle/DeployTest/main/parameters2.json?token={{ response_parameters.stdout | regex_search(regex_token) }}"
+    failed_when: false
+  - name: Save information after deployment 
+    azure_rm_resourcegroup_info:
+      name: "{{ resource_group }}"
+      list_resources: yes
+    register: resource_info
+  - name: Print Resource deployed state
+    debug:
+      msg: "Name: {{ item.name }} - Resource Type: {{ item.type }}"
+    with_items:
+      - "{{ resource_info.resourcegroups.0.resources }}"
+  - name: Finish
+    debug:
+      msg: "INFRASTRUCTURE DEPLOYMENT COMPLETED"
