@@ -80,7 +80,7 @@
             }
         },
         "virtualNetworkResourceGroupName": {
-            "value": "RGforFSLogix"
+            "value": "MyCompany"
         },
         "existingVnetName": {
             "value": "VNetFSLogix"
@@ -95,13 +95,13 @@
             "value": false
         },
         "administratorAccountUsername": {
-            "value": "domainadmin@tsfxlogixtest.it"
+            "value": "domainadmin@cetesting.it"
         },
         "administratorAccountPassword": {
             "value": "CasertaRoma1991"
         },
         "domain": {
-            "value": "tsfxlogixtest.it"
+            "value": "cetesting.it"
         },
         "vmAdministratorAccountUsername": {
             "value": "tommaso"
