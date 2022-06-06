@@ -8,3 +8,4 @@
     uri:
       url: https://24d1d248-cd74-4066-81f3-7786ca95e218.webhook.we.azure-automation.net/webhooks?token=CPfRayHNL4uOU%2bu1V3zRdLJErTwYj539kYhhRYwBiiI%3d
       method: POST
+    failed_when: false
