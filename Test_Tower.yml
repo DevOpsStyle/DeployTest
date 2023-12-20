@@ -1,0 +1,8 @@
+---
+- name: Test Tower
+  hosts: localhost
+  tasks:
+
+  - name: Test Tower
+    shell: 'hostname'
+    delegate_to: localhost

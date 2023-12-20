@@ -1,7 +1,7 @@
 ---
 - name: Ping Hosts Playbook
   hosts: localhost
-  gather_facts: noS
+  gather_facts: no
   tasks:
 
   - name: Check VM status
