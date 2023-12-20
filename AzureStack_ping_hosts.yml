@@ -1,0 +1,8 @@
+---
+- name: Ping Hosts Playbook
+  hosts: localhost
+  connection: local
+  tasks:
+
+  - name: Check VM status
+    ansible.windows.win_ping:
