@@ -6,5 +6,5 @@
   - name: Test Tower
     shell: 'hostname'
     args:
-      executable: /bin/bash
+      executable: /usr/bin
     delegate_to: localhost
