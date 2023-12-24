@@ -13,7 +13,7 @@
       var: ping_result
   
   - name: Get the list of updates for the StackHCI
-    script: ./Script.ps1
+    script: "./Script.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
     register: updates
   
@@ -25,4 +25,4 @@
   - name: Overwrite update status
     debug:
       msg: "Updates are not available"
-    when: updates.stdout == ""
+    when: updates.stdout = ""
