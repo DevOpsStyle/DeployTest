@@ -1,6 +1,7 @@
 ---
 - name: Test Tower
   hosts: localhost
+  become: True
   tasks:
 
   - name: Test Tower
