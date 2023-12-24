@@ -1,15 +1,9 @@
 ---
-- name: Test Tower
-  hosts: all
-  become: True
+- name: Gather Facts from Hosts
+  hosts: localhost
+  gather_facts: yes
+
   tasks:
-
-  - name: Check Tower Status
-    gather_facts: True
-    register: gather_facts_result
-    delegate_to: localhost
-
-  - name: Print the result
-    debug:
-      var: {{ gather_facts_result }}
-    delegate_to: localhost
+    - name: Print all gathered facts
+      debug:
+        var: ansible_facts
