@@ -1,13 +1,15 @@
 ---
 - name: Test Tower
-  hosts: localhost
+  hosts: all
   become: True
   tasks:
 
-  - name: Test Tower
+  - name: Check Tower Status
     gather_facts: yes
     register: gather_facts_result
+    delegate_to: localhost
 
-  - name: Print the ping result
+  - name: Print the result
     debug:
-      var: gather_facts_result
+      var: {{ gather_facts_result }}
+    delegate_to: localhost
