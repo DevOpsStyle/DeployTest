@@ -15,3 +15,14 @@
   - name: Get the list of updates for the StackHCI
     script: ./Script.ps1
     when: ping_result.ping == "pong"
+    register: updates
+  
+  - name: Print the updates
+    debug:
+      var: updates
+    when: {{ updates.stdout }} != ""
+
+  - name: Overwrite update status
+    debug:
+      msg: "Updates are not available"
+    when: updates.stdout == ""
