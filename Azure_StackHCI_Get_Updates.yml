@@ -20,7 +20,7 @@
   - name: Print the updates
     debug:
       var: updates
-    when: {{ updates.stdout }} != ""
+    when: updates.stdout != ""
 
   - name: Overwrite update status
     debug:
