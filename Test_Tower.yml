@@ -5,7 +5,7 @@
   tasks:
 
   - name: Check Tower Status
-    gather_facts: yes
+    gather_facts: True
     register: gather_facts_result
     delegate_to: localhost
 
