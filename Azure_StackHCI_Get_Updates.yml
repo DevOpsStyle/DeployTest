@@ -1,0 +1,17 @@
+---
+- name: Ping Hosts Playbook
+  hosts: all
+  gather_facts: no
+  tasks:
+
+  - name: Check if the server is online
+    ansible.windows.win_ping:
+    register: ping_result
+
+  - name: Print the ping result
+    debug:
+      var: ping_result
+  
+  - name: Get the list of updates for the StackHCI
+    script: ./Script.ps1
+    when: ping_result.ping == "pong"

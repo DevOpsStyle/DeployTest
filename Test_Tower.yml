@@ -5,7 +5,9 @@
   tasks:
 
   - name: Test Tower
-    shell: 'hostname'
-    args:
-      executable: /usr/bin
-    delegate_to: localhost
+    gather_facts: yes
+    register: gather_facts_result
+
+  - name: Print the ping result
+    debug:
+      var: gather_facts_result
