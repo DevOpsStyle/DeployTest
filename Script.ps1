@@ -17,7 +17,7 @@ $computerName2 = "192.168.1.13"
 $scriptBlock = {
     # Inserisci qui il comando da eseguire
     # Esempio: Get-Process
-    Get-Process
+    Get-akshciupdates
 }
 
 # Esecuzione del comando sul computer remoto
