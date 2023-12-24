@@ -1,5 +1,6 @@
 ---
 - name: Ping Hosts Playbook
+  hosts: localhost
   gather_facts: no
   tasks:
 
