@@ -57,7 +57,7 @@
 
   - name: Remove a file, if present
     ansible.windows.win_file:
-    path: {{ item }}
+    path: "{{ item }}"
     state: absent
     with_items:
       - "C:\\Temp\\configresult.txt"
