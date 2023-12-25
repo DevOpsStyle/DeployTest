@@ -29,5 +29,6 @@ $scriptBlock = {
 $Host1 = Invoke-Command -ComputerName $computerName1 -ScriptBlock $scriptBlock -Credential $cred
 $Host2 = Invoke-Command -ComputerName $computerName2 -ScriptBlock $scriptBlock -Credential $cred
 
-Write-output "Host1: $Host1"
-Write-output "Host2: $Host2"
+Write-output "Host1: $Host1" | out-file -filepath C:\temp\configresult.txt -append
+Write-output "----------------" | out-file -filepath C:\temp\configresult.txt -append
+Write-output "Host2: $Host2" | out-file -filepath C:\temp\configresult.txt -append

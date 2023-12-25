@@ -27,7 +27,8 @@ $scriptBlock = {
 $Host1 = Invoke-Command -ComputerName $computerName1 -ScriptBlock $scriptBlock -Credential $cred
 $Host2 = Invoke-Command -ComputerName $computerName2 -ScriptBlock $scriptBlock -Credential $cred
 
-if ($Host1 -eq "") { $Host1 = "No Updates Available" } else { $Host1 = $Host1 }
-if ($Host2 -eq "") { $Host2 = "No Updates Available" } else { $Host2 = $Host2 }
-Write-output "Host1: $Host1"
-Write-output "Host2: $Host2"
+if (-not $Host1) { $Host1 = "No Updates Available" }
+if (-not $Host2) { $Host2 = "No Updates Available" }
+Write-output "Host1: $Host1" | out-file -filepath C:\temp\updateresult.txt -append
+Write-output "----------------" | out-file -filepath C:\temp\updateresult.txt -append
+Write-output "Host2: $Host2" | out-file -filepath C:\temp\updateresult.txt -append

@@ -27,12 +27,6 @@
   - name: Get the list of updates for the StackHCI
     ansible.windows.win_shell: "powershell C:\\Temp\\Script.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
-    register: updates
-  
-  - name: Print the updates
-    debug:
-      var: updates
-    when: updates.stdout != ""
 
   - name: Overwrite update status
     debug:
@@ -42,9 +36,32 @@
   - name: Get configuration for the StackHCI
     ansible.windows.win_shell: "powershell C:\\Temp\\GetHCIAKSconfig.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
-    register: config
 
-  - name: Print the AKS configurations of Stack HCI hosts
+  - name: Read updates status
+   ansible.windows.win_shell: 'type C:\\Temp\\updateresult.txt'  
+   register: updates_status
+   when: ping_result.ping == "pong"
+
+  - name: Read configuration status
+   ansible.windows.win_shell: 'type C:\\Temp\\configresult.txt'  
+   register: config_status
+   when: ping_result.ping == "pong"
+
+  - name: Print the updates status
     debug:
-      var: config
-    when: config.stdout != ""
+      var: updates_status
+  
+  - name: Print the configuration status
+    debug:
+      var: config_status
+
+  - name: Remove a file, if present
+    ansible.windows.win_file:
+    path: {{ item }}
+    state: absent
+    with_items:
+      - "C:\\Temp\\configresult.txt"
+      - "C:\\Temp\\updateresult.txt"
+      - "C:\\Temp\\Script.ps1"
+      - "C:\\Temp\\GetHCIAKSconfig.ps1"
+    when: ping_result.ping == "pong"
