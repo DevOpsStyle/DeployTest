@@ -38,14 +38,14 @@
     when: ping_result.ping == "pong"
 
   - name: Read updates status
-   ansible.windows.win_shell: 'type C:\\Temp\\updateresult.txt'  
-   register: updates_status
-   when: ping_result.ping == "pong"
+    ansible.windows.win_shell: 'type C:\\Temp\\updateresult.txt'  
+    register: updates_status
+    when: ping_result.ping == "pong"
 
   - name: Read configuration status
-   ansible.windows.win_shell: 'type C:\\Temp\\configresult.txt'  
-   register: config_status
-   when: ping_result.ping == "pong"
+    ansible.windows.win_shell: 'type C:\\Temp\\configresult.txt'  
+    register: config_status
+    when: ping_result.ping == "pong"
 
   - name: Print the updates status
     debug:
