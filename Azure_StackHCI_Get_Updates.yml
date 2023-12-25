@@ -26,3 +26,13 @@
     debug:
       msg: "Updates are not available"
     when: updates.stdout == ""
+
+  - name: Get the AKS configurations
+    script: "./GetHCIAKSconfig.ps1 -username {{ username }} -password {{ password }}"
+    when: ping_result.ping == "pong"
+    register: config
+
+  - name: Print the AKS configurations of Stack HCI hosts
+    debug:
+      var: config
+    when: config.stdout != ""
