@@ -2,32 +2,51 @@ param(
     [string]$username,
     [string]$password
 )
-$WarningPreference = 'SilentlyContinue'
-# Conversione della password in un oggetto SecureString
-$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 
-# Creazione dell'oggetto credenziale
+$WarningPreference = 'SilentlyContinue'
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $cred = New-Object System.Management.Automation.PSCredential($username, $securePassword)
 
-# Definizione dell'indirizzo IP del computer remoto
 $computerName1 = "192.168.1.12"
 $computerName2 = "192.168.1.13"
 
-# Comando da eseguire sul computer remoto
 $scriptBlock = {
-    # Inserisci qui il comando da eseguire
-    # Esempio: Get-Process
     $ActiveNode = (Get-ClusterGroup | Where-Object { $_.Name -eq "ca-dbd28c5d-2c62-49a3-8751-ae6936c604e5" }).OwnerNode.ToString()
     $hostname = hostname
     if ($hostname -eq $ActiveNode) 
-    { Get-akshcicluster } 
+    { Get-akshcicluster | ft | out-string } 
     else 
     { Write-Output "Node Inactive" }
 }
 
-# Esecuzione del comando sul computer remoto
-$Host1 = Invoke-Command -ComputerName $computerName1 -ScriptBlock $scriptBlock -Credential $cred
-$Host2 = Invoke-Command -ComputerName $computerName2 -ScriptBlock $scriptBlock -Credential $cred
+$maxAttempts = 3  # Numero massimo di tentativi
+$attempt = 0
+
+function Invoke-RemoteCommand {
+    param(
+        [string]$computerName,
+        [scriptblock]$scriptBlock,
+        [pscredential]$cred
+    )
+
+    $result = $null
+    $success = $false
+
+    while (-not $success -and ($attempt -lt $maxAttempts)) {
+        $attempt++
+        try {
+            $result = Invoke-Command -ComputerName $computerName -ScriptBlock $scriptBlock -Credential $cred -ErrorAction Stop
+            $success = $true
+        } catch {
+            Write-Output "Tentativo $attempt fallito su $computerName. Riprovo..."
+        }
+    }
+
+    return $result
+}
+
+$Host1 = Invoke-RemoteCommand -computerName $computerName1 -scriptBlock $scriptBlock -cred $cred
+$Host2 = Invoke-RemoteCommand -computerName $computerName2 -scriptBlock $scriptBlock -cred $cred
 
 Write-output "Host1: $Host1" | out-file -filepath C:\temp\configresult.txt -append
 Write-output "----------------" | out-file -filepath C:\temp\configresult.txt -append
