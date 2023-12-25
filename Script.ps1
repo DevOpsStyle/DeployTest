@@ -2,7 +2,7 @@ param(
     [string]$username,
     [string]$password
 )
-
+$WarningPreference = 'SilentlyContinue'
 # Conversione della password in un oggetto SecureString
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 
@@ -20,7 +20,11 @@ $scriptBlock = {
     $ActiveNode = (Get-ClusterGroup | Where-Object { $_.Name -eq "ca-dbd28c5d-2c62-49a3-8751-ae6936c604e5" }).OwnerNode.ToString()
     $hostname = hostname
     if ($hostname -eq $ActiveNode) 
-    { Get-akshciupdates } 
+    { $updates = Get-akshciupdates
+      if ($updates -eq "") 
+      { Write-Output "$hostname No updates available" }
+      else 
+      { Write-Output "Updates available" }
     else 
     { Write-Output "Node Inactive" }
 }

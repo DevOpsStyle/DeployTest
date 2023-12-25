@@ -2,7 +2,7 @@ param(
     [string]$username,
     [string]$password
 )
-
+$WarningPreference = 'SilentlyContinue'
 # Conversione della password in un oggetto SecureString
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 
