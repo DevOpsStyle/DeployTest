@@ -44,11 +44,11 @@
 
   - name: Print the updates status
     debug:
-      var: updates_status
+      var: updates_status.stdout_lines
   
   - name: Print the configuration status
     debug:
-      var: config_status
+      var: config_status.stdout_lines
 
   - name: Remove a file, if present
     ansible.windows.win_file:
