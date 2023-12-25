@@ -19,14 +19,19 @@ $scriptBlock = {
     # Esempio: Get-Process
     $ActiveNode = (Get-ClusterGroup | Where-Object { $_.Name -eq "ca-dbd28c5d-2c62-49a3-8751-ae6936c604e5" }).OwnerNode.ToString()
     $hostname = hostname
-    if ($hostname -eq $ActiveNode) 
-    { $updates = Get-akshciupdates
-      if ($updates -eq "") 
-      { Write-Output "$hostname No updates available" }
-      else 
-      { Write-Output "Updates available" }
+    if ($hostname -eq $ActiveNode) {
+      $updates = Get-akshciupdates
+      if ($updates -eq ""){ 
+        Write-Output "$hostname No updates available" 
+      }
+      else { 
+        Write-Output "Updates available" 
+      }
     else 
-    { Write-Output "Node Inactive" }
+    { 
+      Write-Output "Node Inactive" 
+    }
+  }
 }
 
 # Esecuzione del comando sul computer remoto
