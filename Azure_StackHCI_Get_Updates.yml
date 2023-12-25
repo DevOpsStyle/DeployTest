@@ -27,8 +27,13 @@
       msg: "Updates are not available"
     when: updates.stdout == ""
 
+  - name: Copy script
+    ansible.windows.win_copy:
+      src: ./GetHCIAKSconfig.ps1
+      dest: C:\Temp\GetHCIAKSconfig.ps1
+
   - name: Get the AKS configurations
-    script: "./GetHCIAKSconfig.ps1 -username {{ username }} -password {{ password }}"
+    ansible.windows.win_shell: "pws C:\Temp\GetHCIAKSconfig.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
     register: config
 
