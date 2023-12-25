@@ -28,11 +28,6 @@
     ansible.windows.win_shell: "powershell C:\\Temp\\Script.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
 
-  - name: Overwrite update status
-    debug:
-      msg: "Updates are not available"
-    when: updates.stdout == ""
-
   - name: Get configuration for the StackHCI
     ansible.windows.win_shell: "powershell C:\\Temp\\GetHCIAKSconfig.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
