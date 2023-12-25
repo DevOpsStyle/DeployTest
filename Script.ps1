@@ -17,7 +17,12 @@ $computerName2 = "192.168.1.13"
 $scriptBlock = {
     # Inserisci qui il comando da eseguire
     # Esempio: Get-Process
-    Get-akshciupdates
+    $ActiveNode = (Get-ClusterGroup | Where-Object { $_.Name -eq "ca-dbd28c5d-2c62-49a3-8751-ae6936c604e5" }).OwnerNode.ToString()
+    $hostname = hostname
+    if ($hostname -eq $ActiveNode) 
+    { Get-akshciupdates } 
+    else 
+    { Write-Output "Node Inactive" }
 }
 
 # Esecuzione del comando sul computer remoto
