@@ -11,9 +11,21 @@
   - name: Print the ping result
     debug:
       var: ping_result
+
+  - name: Copy Script 1 to the host
+    ansible.windows.win_copy:
+      src: ./Script.ps1
+      dest: C:\Temp\Script.ps1
+    when: ping_result.ping == "pong"
+
+  - name: Copy Script 2 to the host
+    ansible.windows.win_copy:
+      src: ./GetHCIAKSconfig.ps1
+      dest: C:\Temp\GetHCIAKSconfig.ps1
+    when: ping_result.ping == "pong"
   
   - name: Get the list of updates for the StackHCI
-    script: "./Script.ps1 -username {{ username }} -password {{ password }}"
+    ansible.windows.win_shell: "powershell C:\Temp\Script.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
     register: updates
   
@@ -27,13 +39,8 @@
       msg: "Updates are not available"
     when: updates.stdout == ""
 
-  - name: Copy script
-    ansible.windows.win_copy:
-      src: ./GetHCIAKSconfig.ps1
-      dest: C:\Temp\GetHCIAKSconfig.ps1
-
-  - name: Get the AKS configurations
-    ansible.windows.win_shell: "powershell C:\\Temp\\GetHCIAKSconfig.ps1 -username {{ username }} -password {{ password }}"
+  - name: Get configuration for the StackHCI
+    script: "powershell C:\Temp\GetHCIAKSconfig.ps1 -username {{ username }} -password {{ password }}"
     when: ping_result.ping == "pong"
     register: config
 
