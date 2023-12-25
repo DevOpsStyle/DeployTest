@@ -25,4 +25,4 @@
   - name: Overwrite update status
     debug:
       msg: "Updates are not available"
-    when: updates.stdout = ""
+    when: updates.stdout == ""
